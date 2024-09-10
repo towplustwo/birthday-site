@@ -52,23 +52,30 @@ function animate() {
 window.onload = function() {
     var audio = document.getElementById("myAudio");
 
-    // Attempt to play the audio when the page loads
-    audio.play().catch(function(error) {
+    // Attempt to play the audio
+    audio.play().then(function() {
+        console.log('Autoplay successful');
+    }).catch(function(error) {
         console.log('Autoplay failed:', error);
-        // Optionally, prompt the user to interact with the page to start the audio
+        
+        // Create a play button if autoplay fails
         let playButton = document.createElement("button");
         playButton.innerText = "Click to Play Birthday Song!";
         playButton.style.position = "absolute";
         playButton.style.top = "50%";
         playButton.style.left = "50%";
         playButton.style.transform = "translate(-50%, -50%)";
+        playButton.style.padding = "10px 20px";
+        playButton.style.fontSize = "18px";
         document.body.appendChild(playButton);
-        
+
+        // Play audio on button click
         playButton.addEventListener("click", function() {
             audio.play();
-            playButton.remove(); // Remove button after audio starts playing
+            playButton.remove(); // Remove the button after playing
         });
     });
 };
+
 
 animate();
