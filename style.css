@@ -3,8 +3,7 @@
 
 body {
   font-family: 'Mochiy Pop One', sans-serif;
-  background-color: black;
-  background-image: '/bg.jpg';
+  background-color: #000000;
   background-size: cover;
   background-repeat: no-repeat;
   color: #fff;
