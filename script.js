@@ -50,7 +50,25 @@ function animate() {
 }
 
 window.onload = function() {
-        var audio = document.getElementById("myAudio");
-        audio.play();
-    }
+    var audio = document.getElementById("myAudio");
+
+    // Attempt to play the audio when the page loads
+    audio.play().catch(function(error) {
+        console.log('Autoplay failed:', error);
+        // Optionally, prompt the user to interact with the page to start the audio
+        let playButton = document.createElement("button");
+        playButton.innerText = "Click to Play Birthday Song!";
+        playButton.style.position = "absolute";
+        playButton.style.top = "50%";
+        playButton.style.left = "50%";
+        playButton.style.transform = "translate(-50%, -50%)";
+        document.body.appendChild(playButton);
+        
+        playButton.addEventListener("click", function() {
+            audio.play();
+            playButton.remove(); // Remove button after audio starts playing
+        });
+    });
+};
+
 animate();
